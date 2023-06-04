@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <h2>Login</h2>
+    <form action="@Url.Action("Login", "Inicio")" method="post">
+        <div class="form-floating mb-3">
+
+            <label for="floatingInput">Email address</label>
+            <input name="email" type="email" class="form-control" id="floatingInput" >
+        </div>
+        <div class="form-floating">
+            <label for="floatingPassword">Password</label>
+            <input name="password" class="form-control" id="floatingPassword" >
+
+        </div>
+        <p></p>
+        <div>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+
