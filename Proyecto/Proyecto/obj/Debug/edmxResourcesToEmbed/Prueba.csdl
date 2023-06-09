@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="administracion">
+    <Key>
+      <PropertyRef Name="id_adminitracion" />
+    </Key>
+    <Property Name="id_adminitracion" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pasword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="detalle_pedido">
+    <Key>
+      <PropertyRef Name="id_detalle_pedido" />
+    </Key>
+    <Property Name="id_detalle_pedido" Type="Int32" Nullable="false" />
+    <Property Name="precio_unitario" Type="Int32" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="id_pedido" Type="Int32" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK_Detalle_Pedido_Pedido" FromRole="detalle_pedido" ToRole="pedido" />
+  </EntityType>
+  <EntityType Name="pedido">
+    <Key>
+      <PropertyRef Name="id_pedido" />
+    </Key>
+    <Property Name="id_pedido" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="total" Type="Int32" />
+    <Property Name="id_producto" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <NavigationProperty Name="detalle_pedido" Relationship="Self.FK_Detalle_Pedido_Pedido" FromRole="pedido" ToRole="detalle_pedido" />
+    <NavigationProperty Name="producto" Relationship="Self.FK_Pedido_Producto" FromRole="pedido" ToRole="producto" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_Pedido_Usuario" FromRole="pedido" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sub_categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Int32" />
+    <Property Name="foto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pedidoes" Relationship="Self.FK_Pedido_Producto" FromRole="producto" ToRole="pedido" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pasword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pedidoes" Relationship="Self.FK_Pedido_Usuario" FromRole="usuario" ToRole="pedido" />
+  </EntityType>
+  <Association Name="FK_Detalle_Pedido_Pedido">
+    <End Role="pedido" Type="Self.pedido" Multiplicity="0..1" />
+    <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pedido">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="detalle_pedido">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Producto">
+    <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PruebaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="administracions" EntityType="Self.administracion" />
+    <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" />
+    <EntitySet Name="pedidoes" EntityType="Self.pedido" />
+    <EntitySet Name="productoes" EntityType="Self.producto" />
+    <EntitySet Name="usuarios" EntityType="Self.usuario" />
+    <AssociationSet Name="FK_Detalle_Pedido_Pedido" Association="Self.FK_Detalle_Pedido_Pedido">
+      <End Role="pedido" EntitySet="pedidoes" />
+      <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Producto" Association="Self.FK_Pedido_Producto">
+      <End Role="producto" EntitySet="productoes" />
+      <End Role="pedido" EntitySet="pedidoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Usuario" Association="Self.FK_Pedido_Usuario">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="pedido" EntitySet="pedidoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -35,7 +35,7 @@ namespace Proyecto.Controllers
             {
                 connection.Open();
 
-                string sqlQuery = "SELECT COUNT(*) FROM usuario WHERE email= '@email' AND password = '@password'";
+                string sqlQuery = "SELECT FROM usuario WHERE email= '@email' AND password = '@password'";
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
@@ -43,7 +43,7 @@ namespace Proyecto.Controllers
                     command.Parameters.AddWithValue("@email", usuario.email);
                     command.Parameters.AddWithValue("@password",usuario.password);
 
-                    usuario.idUsuario = (int)command.ExecuteScalar();
+                    object resultado = command.ExecuteScalar();
 
                   
                 }
@@ -51,7 +51,7 @@ namespace Proyecto.Controllers
                 connection.Close();
             }
 
-            if (usuario.idUsuario !=0)
+            if (resultado != null)
             {
                 Session["usuario"] = usuario;
                 return RedirectToAction("Index", "Home");

@@ -131,3 +131,4 @@ C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Memory.xml
 C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Numerics.Vectors.xml
 C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\cristina\source\repos\Proyecto\Proyecto\obj\Debug\Proyecto.csproj.SuggestedBindingRedirects.cache

@@ -11,13 +11,13 @@ namespace Proyecto.Models
     
     public class Usuario
     {
-        public int  idUsuario { get; set; }
+        public int  id_usuario { get; set; }
       
-        public string  Nombre { get; set; }
+        public string  nombre { get; set; }
         
         public int telefono { get; set; }
        
-        public string direccion { get; set; }
+        public string direcion { get; set; }
     
         public string email { get; set; }
         
