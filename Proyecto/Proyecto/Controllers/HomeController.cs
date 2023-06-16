@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,14 @@ namespace Proyecto.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public JsonResult ListarUsuario()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            lista = new Usuario().Listar();
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

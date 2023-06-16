@@ -26,46 +26,7 @@ namespace Proyecto.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Login(Usuario usuario)
-        {
-            
-
-           using (SqlConnection connection = new SqlConnection(cadena))
-            {
-                connection.Open();
-
-                string sqlQuery = "SELECT FROM usuario WHERE email= '@email' AND password = '@password'";
-
-                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
-                {
-                    
-                    command.Parameters.AddWithValue("@email", usuario.email);
-                    command.Parameters.AddWithValue("@password",usuario.password);
-
-                    object resultado = command.ExecuteScalar();
-
-                  
-                }
-
-                connection.Close();
-            }
-
-            if (resultado != null)
-            {
-                Session["usuario"] = usuario;
-                return RedirectToAction("Index", "Home");
-
-                Console.WriteLine("Login successful");
-            }
-            else
-            {
-                ViewData["Mensaje"] = "usuario no encontrado";
-              
-            }
-
-         
-        }
+        
 
 
      

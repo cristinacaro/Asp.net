@@ -40,7 +40,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Resumen</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="@Url.Action("Index","Home")">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer"></i></div>
                             Dashboard
                         </a>
@@ -56,7 +56,6 @@
                         <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Todos los productos
-                        </a>
                         </a>
                         <div class="sb-sidenav-menu-heading">Pedidos</div>
                         <a class="nav-link" href="charts.html">
@@ -94,11 +93,10 @@
 
     @Html.ActionLink("Mi Pagina", "Login", "Inicio", new { area = "" }, new { @class = "navbar-brand" })
 
-    @Scripts.Render("~/bundles/jquery");
-    @Scripts.Render("~/bundles/complementos");
-    @Scripts.Render("~/Scripts/fontawesome/all.min.js");
-    @Scripts.Render("~/Scripts/bootstrap.bundle.js");
-    @Scripts.Render("~/Scripts/scripts.js");
+    @Scripts.Render("/bundles/jquery");
+    @Scripts.Render("/Scripts/fontawesome/all.min.js");
+    @Scripts.Render("/Scripts/bootstrap.bundle.js");
+    @Scripts.Render("/Scripts/scripts.js");
 
     @RenderSection("scripts", required: false)
 </body>

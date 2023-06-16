@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-
-
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Proyecto.Models
 {
@@ -22,6 +22,51 @@ namespace Proyecto.Models
         public string email { get; set; }
         
         public string password { get; set; }
+
+
+        public List<Usuario> Listar()
+        {
+
+            List<Usuario> lista = new List<Usuario>();
+            try
+            {
+                using (SqlConnection oconection = new SqlConnection(Conexion.cn))
+                {
+                    string query = "Select * from usuario";
+                    SqlCommand cd = new SqlCommand(query, oconection);
+                    cd.CommandType = CommandType.Text;
+                    oconection.Open();
+
+                    using (SqlDataReader dr = cd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Usuario
+                            {
+                                id_usuario = Convert.ToInt32(dr["id_usuario"]),
+                                nombre = dr["nombre"].ToString(),
+                                telefono = Convert.ToInt32(dr["telefono"]),
+                                direcion = dr["direccion"].ToString(),
+                                email = dr["email"].ToString(),
+                                password = dr["pasword"].ToString()
+
+                            }
+                                );
+                        }
+
+                    }
+                }
+
+
+            }
+            catch
+            {
+
+                lista = new List<Usuario>();
+            }
+            return lista;
+        }
+
 
 
     }

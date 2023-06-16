@@ -131,4 +131,9 @@ C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Memory.xml
 C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Numerics.Vectors.xml
 C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\System.Threading.Tasks.Extensions.xml
-C:\Users\cristina\source\repos\Proyecto\Proyecto\obj\Debug\Proyecto.csproj.SuggestedBindingRedirects.cache
+C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\Microsoft.EntityFrameworkCore.dll
+C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\Microsoft.EntityFrameworkCore.xml
+C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\cristina\source\repos\Proyecto\Proyecto\bin\Microsoft.EntityFrameworkCore.Relational.xml

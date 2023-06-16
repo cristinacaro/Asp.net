@@ -9,6 +9,7 @@
 
 namespace Proyecto
 {
+    using Proyecto.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -25,10 +26,10 @@ namespace Proyecto
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<administracion> administracions { get; set; }
-        public virtual DbSet<detalle_pedido> detalle_pedido { get; set; }
-        public virtual DbSet<pedido> pedidoes { get; set; }
-        public virtual DbSet<producto> productoes { get; set; }
-        public virtual DbSet<usuario> usuarios { get; set; }
+        public virtual DbSet<Administracion> administracions { get; set; }
+        public virtual DbSet<DetallePedido> detalle_pedido { get; set; }
+        public virtual DbSet<Pedido> pedidoes { get; set; }
+        public virtual DbSet<Producto> productoes { get; set; }
+        public virtual DbSet<Usuario> usuarios { get; set; }
     }
 }
