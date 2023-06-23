@@ -26,7 +26,9 @@ namespace Proyecto
     
 
             bundles.Add(new Bundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                       "~/Content/DataTables/css/jquery.DataTables.css",
+                       "~/Content/DataTables/css/responsive.dataTables.css"));
         }
     }
 }
