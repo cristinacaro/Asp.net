@@ -16,7 +16,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <button type="button" class="btn btn-success">Crear Nuevo</button>
+                <button type="button" class="btn btn-success" onclick="abrirModal()">Crear Nuevo</button>
                 <hr />
                 <table id="tabla" class="display cell-border" style="width:100%">
                     <thead>
@@ -26,6 +26,8 @@
                             <th>Telefono</th>
                             <th>Direcion</th>
                             <th>Email</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,17 +39,57 @@
     </div>
 </div>
 
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-black text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body g-2">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="txtnombre">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="exampleFormControlInput1" class="form-label">Fono</label>
+                        <input type="text" class="form-control" id="txtfono">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="txtemail">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="exampleFormControlInput1" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" id="txtdireccion">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                        <input type="text" class="form-control" id="txtpassword">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script>
-
+   
+        var data;
         jQuery.ajax({
             url: '@Url.Action("ListarUsuario", "Home")',
             type: "GET",
             dataType: "json",
             contentType: "application/json; chartset = utf-8",
             success: function (data) {
-                $('#tabla').dataTable({
+
+               $('#tabla').dataTable({
                     data: data,
                     columns: [
                         { 'data': 'id_usuario' },
@@ -55,12 +97,35 @@
                         { 'data': 'telefono' },
                         { 'data': 'direcion' },
                         { 'data': 'email' },
+                        {
+                            defaultContent: '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
+                                '<button type="button" class="btn btn-danger btn-sm ms-2"><i class="fas fa-trash"></i></button>',
+                            "orderable": false,
+                            "searchable": false,
+                            "width": "90px"
+
+                        }
                     ]
-                })   
+
+                })
+             
             }
 
         })
 
+        function abrirModal() {
+
+            $("#FormModal").modal("show")
+
+        }
+
+        $("#tabla tbody").on("click", '.btn-editar', function () {
+            $.noConflict();
+            var datos = data.row(this).data();
+            alert('You clicked on ' + datos[0] + '\'s row');
+           
+
+        })
      
 
     </script>
